@@ -1,0 +1,45 @@
+@model Product?
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<div>
+    <h6 class="bg-primary text-white text-center m-2 p-2">Product Table</h6>
+    <div class="m-2">
+        <table class="table table-sm table-striped table-bordered">
+            <tbody>
+            <tr>
+                <th>Name</th><td>
+                    
+                    @switch (Model?.Price)
+                    {
+                        case > 200:
+                            @:Luxury @Model.Name
+                            break;
+                        default:
+                            @:Basic @Model?.Name
+                            break;
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>@Model?.Price.ToString("c")</td>
+            </tr>
+            <tr>
+                <th>
+                    category Id
+                </th>
+                <td>@Model?.CategoryId</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<a href="/Home/List">List Page</a>
+</body>
+</html>

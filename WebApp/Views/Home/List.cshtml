@@ -1,0 +1,38 @@
+@model IEnumerable<Product>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product List Page</title>
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<h4 class="bg-primary m-2 p-2 text-white text-center">List Product Page</h4>
+<table class="table table-bordered table-striped">
+    <thead>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Category Id</th>
+    <th>Supplier Id</th>
+    </thead>
+    <tbody>
+    
+    @foreach (var prod in Model ?? [])
+    {
+        <tr>
+            <td>@prod.Name</td>
+            <td>@prod.Price.ToString("c")</td>
+            <td>@prod.CategoryId</td>
+            <td>@prod.SupplierId</td>
+            <td>@Model?.GetAverage(prod.Price)% of average</td>
+        </tr>
+    }
+    </tbody>
+</table>
+<a href="/Home/Index">Index</a>
+</body>
+</html>
